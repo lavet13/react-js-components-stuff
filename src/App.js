@@ -1,25 +1,13 @@
-import logo from './logo.svg';
-import './App.css';
+// JSX is basically HTML code inside of JavaScript. Indeed JSX stands for JavaScript XML because HTML in the end is XML, you could say.
+import ExpenseItem from './components/ExpenseItem';
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    return (
+        <div>
+            <h2>Let's get started!</h2>
+            <ExpenseItem />
+        </div>
+    );
 }
 
 export default App;
