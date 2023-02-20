@@ -1,4 +1,11 @@
-import React from 'react';
+// useState allows us to define values as state, where changes to these values should reflect in the component function being called again
+// which is the key difference to the regular variables.
+// And we use it INSIDE OF OUR COMPONENT.
+// It shouldn't be called OUTSIDE of the COMPONENT
+// It shouldn't be called in any NESTED FUNCTIONS INSIDE OF OUR COMPONENT
+// ONE EXCEPTION:TODO
+
+import React, { useState } from 'react';
 
 import Card from '../UI/Card';
 import ExpenseDate from './ExpenseDate';
@@ -26,19 +33,49 @@ function ExpenseItem({ title, amount, date }) {
     // as props which start with on. All these event handlers props, want a function as a value, a function passed as a value for onClick
     // and all these other on props which then is executed when that event occurs.
 
-    // So we need a way of telling React that something changed and that a certain component should be re-evaluated and that's where React introduces
-    // a special concept called state;
+    /////////////////////////////////////////////////////////////////////////
+    // STATE
+    // IF YOU HAVE DATA, WHICH MIGHT CHANGE, AND WHERE CHANGES TO THAT DATA SHOULD BE REFLECTED ON THE UI THEN YOU NEED STATE
+    // BECAUSE REGULAR VARIABLES WILL NOT DO THE TRICK
+
+    // State is actually not React specific concept but it's a key concept in React as well.
+    // title which changes when the clickHandler executes is actually data that should result in this component down here being re-evaluated and re-drawn
+    // on the screen when it's changes, that title data changes. And by default regular variables are not triggering such a re-evaluation.
+
+    // That code executes, sure, but the overall component function doesn't execute again just because some variable changed. And as a side note,
+    // even if it would execute again, of course then titleName, this variable, would all just be recreated and re-initialized to the props value(title)
+    // Because as part of this component function we are creating this titleName variable. So even if that would happen we wouldn't reach the desired result
+    // but we don't even need to think about that because it is not happening. Currently, this component is not called a second time after the initial
+    // rendering, just because a click occurred or because a variable changed, does not trigger this component function to run again.
+    // let titleName = title;
+    // const clickHandler = e => {
+    //   titleName = 'Updated!';
+    //   console.log(e.target);
+    // };
+
+    // so-called React hook(all these React hooks can be recognized by the fact that they start with the word "use")
+    const [titleName, setTitleName] = useState(title);
+    const [amountDate, setAmountDate] = useState(amount);
 
     const clickHandler = e => {
         console.log(e.target);
+        // When we call this state updating function, this special variable will not just receive a new value, but the component function in which
+        // you called this state updating function, and in which you initialized your state with useState will be executed again.
+        // Therefore also evaluate JSX code again. And then it will draw any changes which it's detects compared to the last time it evaluated this
+        // onto the screen.
+        setTitleName('Updated!');
+        setAmountDate(228);
+        // state updating function actually doesn't change the value right away, but instead schedules this state update in the very next line thereafter,
+        // this new value isn't available yet. That's why we see the old value being logged even though we updated it before logging.
+        // console.log(titleName);
     };
 
     return (
         <Card className="expense-item">
             <ExpenseDate date={date} />
             <div className="expense-item__description">
-                <h2>{title}</h2>
-                <div className="expense-item__price">${amount}</div>
+                <h2>{titleName}</h2>
+                <div className="expense-item__price">${amountDate}</div>
             </div>
             <button onClick={clickHandler}>Change Title</button>
         </Card>
