@@ -28,11 +28,9 @@ function ExpenseItem({ title, amount, date }) {
 
     // So we need a way of telling React that something changed and that a certain component should be re-evaluated and that's where React introduces
     // a special concept called state;
-    // let titleName = title;
 
     const clickHandler = e => {
-        // titleName = 'Updated!';
-        // console.log(titleName);
+        console.log(e.target);
     };
 
     return (
