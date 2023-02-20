@@ -3,9 +3,8 @@
 // And we use it INSIDE OF OUR COMPONENT.
 // It shouldn't be called OUTSIDE of the COMPONENT
 // It shouldn't be called in any NESTED FUNCTIONS INSIDE OF OUR COMPONENT
-// ONE EXCEPTION:TODO
 
-import React, { useState } from 'react';
+import React from 'react';
 
 import Card from '../UI/Card';
 import ExpenseDate from './ExpenseDate';
@@ -33,6 +32,7 @@ function ExpenseItem({ title, amount, date }) {
     // as props which start with on. All these event handlers props, want a function as a value, a function passed as a value for onClick
     // and all these other on props which then is executed when that event occurs.
 
+    /*
     /////////////////////////////////////////////////////////////////////////
     // STATE
     // IF YOU HAVE DATA, WHICH MIGHT CHANGE, AND WHERE CHANGES TO THAT DATA SHOULD BE REFLECTED ON THE UI THEN YOU NEED STATE
@@ -53,7 +53,29 @@ function ExpenseItem({ title, amount, date }) {
     //   console.log(e.target);
     // };
 
-    // so-called React hook(all these React hooks can be recognized by the fact that they start with the word "use")
+    // useState is so-called React hook(all these React hooks can be recognized by the fact that they start with the word "use")
+    // useState registers some state, so some value as a state for the component in which it is being called and to be more precise,
+    // it registers it for a specific component instance. For example, every ExpenseItem receives it's own separate state which is detached(отделен)
+    // from the other states. We have one ExpenseItem definition but then this function is basically called four times
+    // (depends on how many objects stored in an array). And every time it's called, a new separate state is created. Of course in the same way but
+    // managed independently by React. So if change the title in the first ExpenseItem, the other ones are not affected because they have their own state.
+    // It's on a per component instance basis. So we have separate states, even if we create a component more than once.
+    // Now, in addition, whenever state changes, it's only this component function and only that specific instance where this component is being used
+    // where React will re-evaluate it. Why am I using const here, when we do eventually assign a new value? Well, keep in mind that we're not assigning
+    // a value with the equal sign. That would indeed fail, but that is not how we assign a new value, when we update a state. Instead we call this
+    // state updating function and the concrete value is simply managed somewhere else by React. By calling useState we tell React that it should manage
+    // some value for us. We never see that variable itself. So therefore, we just call a state updating function and we never assign a new value
+    // to titleName with the equal operator. And therefore, using a const is absolutely fine. How do we get the latest titleName value then though?
+    // The component function is re-executed when the state is updated. So if we called setTitleName and we assign a new title, that leads
+    // to this component being called again and therefore, this new title, this updated title is fetched from React, which manages the state for us.
+    // Basically we go to React and say, "Hey, please, give me that latest titleName state which I told you to manage for me." And React provides us this
+    // latest state in given array which useState always returns. We always get a brand new snapshot of that state when this component function re-executes.
+    // Now you might be wondering if that doesn't mean that we always overwrite any state changes with props.title. And here the special thing is that React
+    // keeps track of when we call useState in a given component instance for the first time. And when we call it for the first time ever, it'll take that
+    // argument as an initial value. But if a component is then re-executed because of such a state change, for example. React will not reinitialize state.
+    // Instead, it will detect that this state had been initialized in the past, and it will just grab the latest state which is based on some state update,
+    // for example, and gives us that state instead. So this initial value is really only considered when this component function is being executed for the
+    // first time, for a given component instance.
     const [titleName, setTitleName] = useState(title);
     const [amountDate, setAmountDate] = useState(amount);
 
@@ -69,15 +91,26 @@ function ExpenseItem({ title, amount, date }) {
         // this new value isn't available yet. That's why we see the old value being logged even though we updated it before logging.
         // console.log(titleName);
     };
+    */
+
+    // return (
+    //     <Card className="expense-item">
+    //         <ExpenseDate date={date} />
+    //         <div className="expense-item__description">
+    //             <h2>{titleName}</h2>
+    //             <div className="expense-item__price">${amountDate}</div>
+    //         </div>
+    //         <button onClick={clickHandler}>Change Title</button>
+    //     </Card>
+    // );
 
     return (
         <Card className="expense-item">
             <ExpenseDate date={date} />
             <div className="expense-item__description">
-                <h2>{titleName}</h2>
-                <div className="expense-item__price">${amountDate}</div>
+                <h2>{title}</h2>
+                <div className="expense-item__price">${amount}</div>
             </div>
-            <button onClick={clickHandler}>Change Title</button>
         </Card>
     );
 }
