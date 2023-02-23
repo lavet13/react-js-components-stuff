@@ -1,0 +1,24 @@
+# React is all about "Components"
+Why could React be about one concept in it's core? Because all user interfaces in the end are made up of components. So what could be a Component then
+if it is something which is crucial in all user interfaces you see?
+
+# What is a Component?
+Reusable building blocks in your UI. Components are in the end just a combination of HTML code, CSS code for styling and possibly JavaScript code for
+some logic. And you don't have to reuse a component to make it a component. It's just one of it's traits that it's reusable.
+We got all individual building blocks which we combine together to build a UI. And in the end of course all UI can be split up into components.
+Into containers and buttons and input elements and product items, which are being output. You build these individual components and then you tell React how
+to compose them together into a final UI.
+
+# Why Components?
+React embraces this concept of components because of that reusability aspect and because it allows us to separate our concerns. Both concepts are important
+concepts in programming in general. Having reusable building blocks helps us avoid repetition, and in proramming in general it's good if we don't repeat 
+ourselves. Having a separation of concerns helps us with keeping our code base small and manageable instead of having one large file which holds all the 
+HTML code and all JavaScript logic for the entire UI. We have small separated units, these components where every component has one clear concern, one focus,
+one specific task it focuses on. And if we split that code across multiple files then as we are going to do it through out this course, then we will have
+small pieces of code which are easy to manage and maintain. And these of course are not concepts or ideas React invented. In general no matter what you are
+building you tend to work with functions and you split your code into multiple small functions which then may call each other to outsource logic 
+into a function, to separate concerns and to be able to execute the same code multiple times if you need to. And React just picks up that concept of 
+functions and of separating code across functions and translates it to the front end web application world where we build an entire UI by splitting our code
+into multiple components which we then can mix and match as we need to.
+
+In the end, we just build our own custom HTML Elements and we combined them together for building a UI.
