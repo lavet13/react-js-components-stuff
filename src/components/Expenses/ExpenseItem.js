@@ -76,6 +76,33 @@ function ExpenseItem({ title, amount, date }) {
     // Instead, it will detect that this state had been initialized in the past, and it will just grab the latest state which is based on some state update,
     // for example, and gives us that state instead. So this initial value is really only considered when this component function is being executed for the
     // first time, for a given component instance.
+
+    ///////////////////////////////////////////////////////////////////////
+    // Lifting State Up
+    // Previously, we learned about a very important concept of moving data from a child to a parent component by utilizing props to receive a function from
+    // the parent component which we call in the child component. And this is closely related to another key concept which we also already used without 
+    // even knowing. And that's a concept called Lifting State Up. Consider this basic Component Tree which is roughly what we have in this demo application
+    // where we have an app component which in turn renders Expenses and NewExpense component. Now, in this case, the NewExpense component is a component
+    // which generates some data, some state. In our example application, we are fetching some user input here. Now it is quite common that you do generate
+    // or fetch data in a component but that you might not need that data in that component. Instead, we need it in another component, 
+    // in the Expenses component. That's where this generated data is needed in the end, slightly transformed, packed into an object but it is the data
+    // we fetch in NewExpense. So naturally we would like to hand that data over but that doesn't work like this because we have no direct connection
+    // between two sibling components. Instead, we can only communicate from parent to child and from child to parent. That's why in such cases like we 
+    // have, we utilize the closest component, the closest parent component which has direct or indirect access to both involved components. In this case,
+    // the App component. The app component in our application has access to both the NewExpense and the Expenses component because it renders both components
+    // in it's returned JSX code. That's why we wanna utilize that. Because we can now store our state in that closest involved component. So in that
+    // parent component which has access to both involved components by "lifting our state up". So by passing our generated state data from the NewExpense
+    // to the App component. And that's what we're already doing. We're doing this by utilizing props, by calling the function we receive on the 
+    // onAddExpense prop. That alone is not lifting the state up. That's just calling a function we receive through props. But then we do something important.
+    // We actually do pass data to that function which we call. By doing that we are lifting that data, that state up. We're not keeping it in the NewExpense
+    // component. We're not keeping expense data there. Instead, we are lifting it up to the App component. 
+    // We are lifting the state up. We are passing data up to some parent component, because we either need that data directly in the app component
+    // or as it's the case in our demo application. And as it is quite common, because we then wanna pass that data down to another component via props.
+    // Lifting the state up is about moving data from a child component to some parent component to either use it there or to then pass it down to some
+    // other child component. The App component which is the first component in line. It's not always that root app component to which you wanna lift your
+    // state up. Instead, the goal is to lift it up just as high as necessary in your Component Tree until you have a component which has both access to
+    // the components that generate data as well as the components that needs data, that might be the app component, but that could also be another component.
+
     const [titleName, setTitleName] = useState(title);
     const [amountDate, setAmountDate] = useState(amount);
 
