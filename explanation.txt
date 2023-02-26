@@ -22,3 +22,27 @@ functions and of separating code across functions and translates it to the front
 into multiple components which we then can mix and match as we need to.
 
 In the end, we just build our own custom HTML Elements and we combined them together for building a UI.
+
+# Controlled vs Uncontrolled Components & Stateless vs Stateful Components
+
+Whenever you use two way binding you are controlling a component but here we're controlling our own custom component.
+Now, what does this mean? It means that a value which is used in the component (dropdown value in ExpenseFilter component)
+is passed on a parent component, through props and is received from the parent component. Both the currently the set value,
+as well as the function which in the end handles the selected value is not part of ExpenseFilter. ExpenseFilter is really
+just a component that presense the UI, that presense the dropdown and then attaches a couple of listeners or props, but
+the real logic recites in the parent component and that turns ExpenseFilter into something which is called a controlled component.
+Now, technically there is no difference. ExpenseFilter is still a regular component as you learned it. It's just a special term
+that when you see it basically means what I just explained that both the values, as well as changes to the value are not
+handled in the component itself but in a parent component. Expenses component controls the ExpenseFilter component.
+And that's just a term which you should be aware of. Another term or another concept you should be aware of because you might
+hear it from time to time is about presentational vs stateful components or stateless vs stateful components or dumb vs smart components.
+There are a lot of terms for that, but what do they mean? It simply means that in basically all React apps which you're building
+you will have a couple of components that manage some state like this Expenses component which manages filter state or
+ExpenseForm component which manages the input state. And then you will have other components which don't manage any state, like ExpenseItem
+then it is called stateless component. ExpenseItem is a stateless component also called presentational or dumb component because it doesn't have
+any internal state it's just there to output some data. And in most react applications, you will have more presentational or dumb components
+than smart or stateful components. So even though dumb might sound negative and it might sound like stateful components are better
+that's not the case. These are really just terms and typically you end up with less stateful components than with stateless components.
+Because you wanna split up your application into small reusable pieces and most pieces, most components indeed will only focus on outputting
+something, on having some JSX code, maybe some transformation logic and maybe some CSS code, but it's only a couple of components which
+typically do manage state. And then this state is spread out and distributed through props in the end.

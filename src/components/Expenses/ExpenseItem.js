@@ -23,6 +23,7 @@ import './ExpenseItem.css';
 // in JSX, then calls any functions that those functions might have returned so any elements those components might have used in their JSX code until
 // there are no more functions left. And then it re-evaluates the overall result and translates that into DOM instructions which renders something
 // on the screen.
+
 function ExpenseItem({ title, amount, date }) {
     // React expects some JSX, false, null, undefined, true
     // to render in the UI and NOT some JavaScript object
@@ -108,6 +109,7 @@ function ExpenseItem({ title, amount, date }) {
 
     const clickHandler = e => {
         console.log(e.target);
+        // TODO I should memorize that better
         // When we call this state updating function, this special variable will not just receive a new value, but the component function in which
         // you called this state updating function, and in which you initialized your state with useState will be executed again.
         // Therefore also evaluate JSX code again. And then it will draw any changes which it's detects compared to the last time it evaluated this

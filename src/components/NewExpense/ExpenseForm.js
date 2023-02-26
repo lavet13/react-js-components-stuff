@@ -14,6 +14,7 @@ const ExpenseForm = ({ onSaveExpenseData }) => {
 
     const titleChangeHandler = e => {
         setEnteredTitle(e.target.value);
+        console.log(enteredTitle);
 
         // setUserInput({ ...userInput, enteredTitle: e.target.value });
         // Now whenever, and that's another key rule, which you should memorize, whenever you update state and you depend on the previous state,
@@ -33,6 +34,7 @@ const ExpenseForm = ({ onSaveExpenseData }) => {
 
     const amountChangeHandler = e => {
         setEnteredAmount(e.target.value);
+        console.log(enteredAmount);
 
         // setUserInput({ ...userInput, enteredAmount: e.target.value });
         // setUserInput(prevState => ({
@@ -43,6 +45,7 @@ const ExpenseForm = ({ onSaveExpenseData }) => {
 
     const dateChangeHandler = e => {
         setEnteredDate(e.target.value);
+        console.log(enteredDate);
 
         // setUserInput({ ...userInput, enteredDate: e.target.value });
         // setUserInput(prevState => ({
