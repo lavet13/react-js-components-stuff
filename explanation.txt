@@ -46,3 +46,4 @@ that's not the case. These are really just terms and typically you end up with l
 Because you wanna split up your application into small reusable pieces and most pieces, most components indeed will only focus on outputting
 something, on having some JSX code, maybe some transformation logic and maybe some CSS code, but it's only a couple of components which
 typically do manage state. And then this state is spread out and distributed through props in the end.
+
