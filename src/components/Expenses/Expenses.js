@@ -10,6 +10,8 @@ function Expenses({ items }) {
         setFilteredYear(selectedYear);
     };
 
+    const [years, setYears] = useState([2024, 2022, 2021, 2023, 2020]);
+
     const [filteredYear, setFilteredYear] = useState('2020');
 
     // if you output an array of JSX elements, then React is capable of simply rendering these elements.
@@ -45,15 +47,32 @@ function Expenses({ items }) {
     // placed. And it's able to update this list in a more efficient way. So long story short, you should always add such a key when mapping
     // out lists of items.
 
+    // Outputting Conditional Content
+    // We can actually select values where we have no data. And we might wanna show an appropriate message in such cases, and that leads us to the second
+    // part of this module, conditional content, which is also important. Conditional content is about rendering different output under different
+    // conditions. So i'm not talking about lists, but about rendering either A or B or C, whatever you need. And that's something I wanna do here,
+    // in Expenses.js, we render our list of expense items, but if our filtered expenses, array turns out to be empty, we render nothing.
+    // Now we might wanna instead render a message telling the user that we have no items for the chosen filter. And for that, we wanna render content
+    // conditionally. We can again add a dynamic expression.
+
+    const filteredExpenses = items.filter(
+        ({ date }) => date.getFullYear().toString() === filteredYear
+    );
+
     return (
         <Card className="expenses">
             <ExpenseFilter
+                years={years}
                 selected={filteredYear}
                 onChangeFilter={filterChangeHandler}
             />
-            {Array.isArray(items) &&
-                items.length > 0 &&
-                items.map(({ id, title, amount, date }) => (
+            {filteredExpenses.length === 0 && (
+                <p style={{ color: 'white', fontWeight: '700' }}>
+                    No expenses found.
+                </p>
+            )}
+            {filteredExpenses.length !== 0 &&
+                filteredExpenses.map(({ id, title, amount, date }) => (
                     <ExpenseItem
                         key={id}
                         title={title}
