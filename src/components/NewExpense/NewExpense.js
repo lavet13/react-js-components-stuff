@@ -5,6 +5,10 @@ import ExpenseForm from './ExpenseForm';
 
 const NewExpense = ({ onAddExpense }) => {
     const saveExpenseDataHandler = enteredExpenseData => {
+        if (!Number.isFinite(enteredExpenseData.amount)) {
+            console.error('Number is invalid. Nice try -_-');
+            return;
+        }
         const expenseData = {
             id: Math.random().toString(),
             ...enteredExpenseData,

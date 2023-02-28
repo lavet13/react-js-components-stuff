@@ -24,7 +24,7 @@ import './ExpenseItem.css';
 // there are no more functions left. And then it re-evaluates the overall result and translates that into DOM instructions which renders something
 // on the screen.
 
-function ExpenseItem({ title, amount, date }) {
+const ExpenseItem = ({ title, amount, date }) => {
     // React expects some JSX, false, null, undefined, true
     // to render in the UI and NOT some JavaScript object
 
@@ -144,6 +144,6 @@ function ExpenseItem({ title, amount, date }) {
             </Card>
         </li>
     );
-}
+};
 
 export default ExpenseItem;

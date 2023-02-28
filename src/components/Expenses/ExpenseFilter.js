@@ -2,7 +2,7 @@ import React from 'react';
 
 import './ExpenseFilter.css';
 
-function ExpenseFilter({ onChangeFilter, selected, years }) {
+const ExpenseFilter = ({ onChangeFilter, selected, years }) => {
     const dropdownChangeHandler = e => {
         onChangeFilter(e.target.value);
     };
@@ -25,6 +25,6 @@ function ExpenseFilter({ onChangeFilter, selected, years }) {
             </div>
         </div>
     );
-}
+};
 
 export default ExpenseFilter;

@@ -2,7 +2,7 @@ import React from 'react';
 
 import './ExpenseDate.css';
 
-function ExpenseDate({ date }) {
+const ExpenseDate = ({ date }) => {
     const month = Intl.DateTimeFormat('en-US', {
         month: 'long',
     }).format(date);
@@ -22,6 +22,6 @@ function ExpenseDate({ date }) {
             <div className="expense-date__day">{day}</div>
         </div>
     );
-}
+};
 
 export default ExpenseDate;

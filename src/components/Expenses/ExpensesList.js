@@ -12,7 +12,7 @@ import ExpenseItem from './ExpenseItem';
 // and we now also got a little bit of a leaner Expenses.js file again. One additional tweak, which I want to make which I almost forgot is that
 // since I'm using unordered list here now for semantic reasons in the ExpenseItem component, I actually wanna switch away from having a div being
 // rendered to a list item instead.
-function ExpensesList({ items }) {
+const ExpensesList = ({ items }) => {
     if (items.length === 0)
         return (
             <h2 className="expenses-list__fallback">
@@ -32,6 +32,6 @@ function ExpensesList({ items }) {
             ))}
         </ul>
     );
-}
+};
 
 export default ExpensesList;
