@@ -1,9 +1,9 @@
 import React, { useState } from 'react';
 
 import Card from '../UI/Card';
-import ExpenseItem from './ExpenseItem';
 import ExpenseFilter from './ExpenseFilter';
 import './Expenses.css';
+import ExpensesList from './ExpensesList';
 
 function Expenses({ items }) {
     const filterChangeHandler = function (selectedYear) {
@@ -17,7 +17,7 @@ function Expenses({ items }) {
     // if you output an array of JSX elements, then React is capable of simply rendering these elements.
 
     // Understanding Keys
-    // we suppose that we haven't the key prop yet. And when we would add a new item then React renders this new item
+    // We suppose that we haven't the key prop yet. And when we would add a new item then React renders this new item
     // as the last item in this list of div's and updates all items and replace their content such that it again matches
     // the order of the items in my array. And this is not great. This is happening because to React all these items look similar
     // and it only sees that my array changed that it's now longer than before. And hence it simply renders an additional div
@@ -44,8 +44,8 @@ function Expenses({ items }) {
 
     // After adding a key prop
     // Now, React is able to uniquely identify all these items and it's therefore aware, not just how long the array is but also aware which items should be
-    // placed. And it's able to update this list in a more efficient way. So long story short, you should always add such a key when mapping
-    // out lists of items.
+    // placed. And it's able to update this list in a more efficient way. So long story short, YOU SHOULD ALWAYS ADD SUCH A KEY WHEN MAPPING
+    // OUT LISTS OF ITEMS.
 
     // Outputting Conditional Content
     // We can actually select values where we have no data. And we might wanna show an appropriate message in such cases, and that leads us to the second
@@ -66,20 +66,7 @@ function Expenses({ items }) {
                 selected={filteredYear}
                 onChangeFilter={filterChangeHandler}
             />
-            {filteredExpenses.length === 0 && (
-                <p style={{ color: 'white', fontWeight: '700' }}>
-                    No expenses found.
-                </p>
-            )}
-            {filteredExpenses.length !== 0 &&
-                filteredExpenses.map(({ id, title, amount, date }) => (
-                    <ExpenseItem
-                        key={id}
-                        title={title}
-                        amount={amount}
-                        date={date}
-                    />
-                ))}
+            <ExpensesList items={filteredExpenses} />
         </Card>
     );
 }

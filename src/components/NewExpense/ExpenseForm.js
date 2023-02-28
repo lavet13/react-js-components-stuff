@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './ExpenseForm.css';
 
-const ExpenseForm = ({ onSaveExpenseData }) => {
+const ExpenseForm = ({ onSaveExpenseData, onCancel }) => {
     const [enteredTitle, setEnteredTitle] = useState('');
     const [enteredAmount, setEnteredAmount] = useState('');
     const [enteredDate, setEnteredDate] = useState('');
@@ -92,6 +92,7 @@ const ExpenseForm = ({ onSaveExpenseData }) => {
         // to a child component and then call that function inside of the child component. And when we then call a function, we can of course pass data
         // to that function as a parameter and that's how we can communicate up from child to parent.
         onSaveExpenseData(expenseData);
+        onCancel();
     };
 
     return (
@@ -134,6 +135,9 @@ const ExpenseForm = ({ onSaveExpenseData }) => {
                 </div>
             </div>
             <div className="new-expense__actions">
+                <button type="button" onClick={onCancel}>
+                    Cancel
+                </button>
                 <button type="submit">Add Expense</button>
             </div>
         </form>
